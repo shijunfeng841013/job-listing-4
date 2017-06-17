@@ -1,0 +1,18 @@
+<div class="pull-right">
+  <%= link_to("Add a job", "#", class:"btn btn-default") %>
+</div>
+
+<table class="table table-borderd">
+  <% @jobs.each do|job| %>
+
+    <tr>
+      <td><%= job.title %></td>
+      <td>
+        <%= link_to("Edit", "#") %> |
+        <%= link_to("Destroy", "#")%>
+      </td>
+      <td><%= job.created_at %></td>
+    </tr>
+
+  <% end %>
+</table>

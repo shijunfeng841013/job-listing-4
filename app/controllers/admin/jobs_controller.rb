@@ -2,6 +2,8 @@ class Admin::JobsController < ApplicationController
 
   before_action :authenticate_user!
 
+  before_action :require_is_admin
+
   def index
     @jobs = Job.all
   end
@@ -15,9 +17,9 @@ class Admin::JobsController < ApplicationController
   end
 
   def create
-    @job = Job.new
+    @job = Job.new(job_params)
 
-    if @job.save(job_params)
+    if @job.save
       redirect_to admin_jobs_path
     else
       render :new
@@ -46,6 +48,8 @@ class Admin::JobsController < ApplicationController
       flash[:alert] = "Job deleted"
     end
   end
+
+
 
 private
   def job_params
